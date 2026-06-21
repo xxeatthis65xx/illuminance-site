@@ -1,0 +1,13 @@
+{
+  "photos": [
+    { "image": "", "caption": "", "size": "tall" },
+    { "image": "", "caption": "", "size": "normal" },
+    { "image": "", "caption": "", "size": "wide" },
+    { "image": "", "caption": "", "size": "normal" },
+    { "image": "", "caption": "", "size": "normal" },
+    { "image": "", "caption": "", "size": "tall" },
+    { "image": "", "caption": "", "size": "normal" },
+    { "image": "", "caption": "", "size": "wide" },
+    { "image": "", "caption": "", "size": "normal" }
+  ]
+}

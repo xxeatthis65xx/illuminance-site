@@ -1,0 +1,12 @@
+{
+  "couples": [
+    { "name": "Sarah & Peyton", "date": "5.17.2025", "venue": "Renshaw Family Farms · Freeport, PA", "photo": "", "film": "" },
+    { "name": "Peyton & Conner", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Alanna & Tony", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Haislin & Joshua", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Shelly & Nduta", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Davina & Franck", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Meghan & Blair", "date": "", "venue": "", "photo": "", "film": "" },
+    { "name": "Courtney & Vinnie", "date": "", "venue": "", "photo": "", "film": "" }
+  ]
+}

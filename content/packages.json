@@ -1,0 +1,75 @@
+{
+  "packages": [
+    {
+      "name": "First Light", "sky": "dawn", "stars": false, "price": "1,750", "badge": "",
+      "tagline": "Where the story begins — soft, simple, unforgettable.",
+      "features": [
+        "Up to 4 Hours of Coverage",
+        "2–3 Minute Highlight Video",
+        "Basic Music Overlay",
+        "Up to 180 Day File Delivery"
+      ],
+      "save": "Our entry-level package — upgrade to save far more on add-ons & exclusive services."
+    },
+    {
+      "name": "Golden Hour", "sky": "golden", "stars": false, "price": "2,000", "badge": "",
+      "tagline": "Hear every vow with voice-overs — a touch First Light can't offer.",
+      "features": [
+        "Up to 5 Hours of Coverage",
+        "5–7 Minute Highlight Video",
+        "Raw Footage + Hard Drive",
+        "Voice Overs",
+        "File Delivery Up to 180 Days"
+      ],
+      "save": "Choose Golden Hour to save <b>$310</b> on add-ons."
+    },
+    {
+      "name": "Starlight", "sky": "star", "stars": true, "price": "2,200", "badge": "Our Signature",
+      "tagline": "From drone shots to behind-the-scenes, we won't miss any of the sparkle.",
+      "features": [
+        "Up to 8 Hours of Coverage",
+        "8–12 Minute Highlight Video",
+        "Full Ceremony Film",
+        "Lots of Voice Overs",
+        "4K Drone Footage",
+        "Behind The Scenes Footage",
+        "Raw Footage + Hard Drive",
+        "File Delivery Up to 90 Days"
+      ],
+      "save": "Choose Starlight to save <b>$975</b> on add-ons."
+    },
+    {
+      "name": "Evermore", "sky": "ever", "stars": true, "price": "3,500", "badge": "Ultimate Elegance",
+      "tagline": "Forever reminisce with guest interviews, a custom video book, full-feature film & more.",
+      "features": [
+        "Up to 10 Hours of Coverage",
+        "10–20 Minute Full Feature Film",
+        "Lots of Voice Overs",
+        "Full Ceremony Film",
+        "4K Drone Footage",
+        "Guest Interviews",
+        "Behind The Scenes Footage",
+        "More Dancing Footage",
+        "Raw Footage + Two Hard Drives",
+        "Custom Digital Video Book",
+        "Social Media Video Content",
+        "60–120 Second Teaser Trailer",
+        "File Delivery Up to 90 Days"
+      ],
+      "save": "Choose Evermore to save <b>$1,295</b> on add-ons."
+    }
+  ],
+  "addons": [
+    { "name": "Extra Dancing", "price": 50 },
+    { "name": "Extra Hour", "price": 150 },
+    { "name": "Drone", "price": 250 },
+    { "name": "Reception Music Video", "price": 500 },
+    { "name": "Social Media Package", "price": 250 },
+    { "name": "Raw Footage + Hard Drive", "price": 180 },
+    { "name": "Raw Footage + Two Hard Drives", "price": 250 },
+    { "name": "60 Second Teaser Trailer", "price": 100 },
+    { "name": "Behind The Scenes", "price": 150 },
+    { "name": "Full Ceremony Film", "price": 250 },
+    { "name": "Custom Digital Video Book", "price": 250 }
+  ]
+}
