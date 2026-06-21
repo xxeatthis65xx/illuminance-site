@@ -58,6 +58,9 @@ function ytEmbed(url){
   if(m) id=m[1];
   return id?("https://www.youtube.com/embed/"+id):"";
 }
+function slugify(s){
+  return (s||"").toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
 function setSocials(s){
   document.querySelectorAll('.js-ig').forEach(a=>{if(s.instagram)a.href=s.instagram});
   document.querySelectorAll('.js-yt').forEach(a=>{if(s.youtube)a.href=s.youtube});
@@ -98,12 +101,11 @@ function coupleTile(c){
   const inner=`
     <span class="story__num"></span>
     <span class="story__name">${c.name||""}</span>
-    <span class="story__meta">${c.venue || (c.film?"View Film":"")}</span>`;
-  const style=hasImg?` style="background-image:url('${imgPath(c.photo)}')"`:"";
-  if(c.film){
-    return `<a class="story reveal" href="${c.film}" target="_blank" rel="noopener"${style}>${inner}</a>`;
-  }
-  return `<div class="story reveal"${style}>${inner}</div>`;
+    <span class="story__meta">${c.venue || c.date || "View Story"}</span>`;
+  const pos=c.photoFocus&&c.photoFocus!=='center'?`;background-position:${c.photoFocus}`:"";
+  const style=hasImg?` style="background-image:url('${imgPath(c.photo)}')${pos}"`:"";
+  const href='./story.html?couple='+encodeURIComponent(slugify(c.name));
+  return `<a class="story reveal" href="${href}"${style}>${inner}</a>`;
 }
 function renderPortfolio(couples, container, limit){
   if(!container) return;
@@ -144,9 +146,11 @@ function renderGallery(photos, container, limit){
   GAL_IMAGES=[];
   container.innerHTML=list.map((p,i)=>{
     const size=p.size==='tall'?'tall':p.size==='wide'?'wide':'';
+    const focus=p.position||p.focus;
+    const pos=focus&&focus!=='center'?`;background-position:${focus}`:"";
     if(p.image){
       const idx=GAL_IMAGES.length; GAL_IMAGES.push(imgPath(p.image));
-      return `<div class="gtile has-img reveal ${size}" data-lb="${idx}" style="background-image:url('${imgPath(p.image)}')"><span></span></div>`;
+      return `<div class="gtile has-img reveal ${size}" data-lb="${idx}" style="background-image:url('${imgPath(p.image)}')${pos}"><span></span></div>`;
     }
     return `<div class="gtile reveal ${size}"><span>Photo ${i+1}</span></div>`;
   }).join('');
@@ -158,6 +162,44 @@ function renderGallery(photos, container, limit){
       t.onclick=()=>{lb._show(+t.dataset.lb); lb.classList.add('open');};
     });
   }
+}
+
+/* ---------- couple story (detail page) ---------- */
+function clipCard(clip){
+  const src=imgPath(clip&&(clip.video||clip.file));
+  if(!src) return '';
+  const poster=clip.poster?` poster="${imgPath(clip.poster)}"`:'';
+  return `<div class="clip reveal"><video src="${src}"${poster} autoplay muted loop playsinline preload="metadata"></video></div>`;
+}
+function renderStory(couples){
+  const root=document.getElementById('storyRoot');
+  if(!root) return;
+  const slug=new URLSearchParams(location.search).get('couple');
+  const c=couples.find(x=>slugify(x.name)===slug);
+  if(!c){
+    root.innerHTML='<div class="subhead reveal"><span class="label">Real Weddings</span><h1>Story Not Found</h1><p>This wedding may have moved.</p></div><div class="view-all reveal"><a class="btn-ghost" href="./portfolio.html">All Weddings</a></div>';
+    return;
+  }
+  document.title=c.name+' — Illuminance Wedding Films';
+  const meta=[c.date,c.venue].filter(Boolean).join(' · ');
+  const embed=ytEmbed(c.film);
+  const filmHTML=embed?`<div class="story-film reveal"><iframe src="${embed}" title="${c.name} film" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`:'';
+  const storyHTML=c.story?`<div class="story-copy reveal">${c.story.split(/\n\n+/).map(p=>'<p>'+p+'</p>').join('')}</div>`:'';
+  const clips=(c.clips||[]).map(clipCard).filter(Boolean).join('');
+  const clipsHTML=clips?`<div class="clip-grid reveal">${clips}</div>`:'';
+  const hasPhotos=(c.photos||[]).some(p=>p.image);
+  root.innerHTML=`
+    <div class="subhead reveal">
+      <span class="label">Their Story</span>
+      <h1>${c.name}</h1>
+      ${meta?`<p>${meta}</p>`:''}
+    </div>
+    ${filmHTML}
+    ${storyHTML}
+    ${clipsHTML}
+    ${hasPhotos?'<div class="grid-gallery" id="storyGallery"></div>':''}
+    <div class="view-all reveal" style="margin-top:70px"><a class="btn-ghost" href="./portfolio.html">View All Weddings</a></div>`;
+  if(hasPhotos) renderGallery(c.photos||[], document.getElementById('storyGallery'), 0);
 }
 
 /* ---------- packages (home) ---------- */
@@ -236,6 +278,9 @@ function wireForm(){
     } else if(PAGE==='gallery'){
       const gl=await load('./content/gallery.json');
       renderGallery(gl.photos||[], document.getElementById('galleryFull'), 0);
+    } else if(PAGE==='story'){
+      const pf=await load('./content/portfolio.json');
+      renderStory(pf.couples||[]);
     }
   }catch(err){
     console.error(err);

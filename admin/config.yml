@@ -73,7 +73,44 @@ collections:
               - { label: "Date", name: "date", widget: "string", required: false }
               - { label: "Venue / location", name: "venue", widget: "string", required: false }
               - { label: "Cover photo", name: "photo", widget: "image", required: false }
-              - { label: "Film link (YouTube)", name: "film", widget: "string", required: false, hint: "Where this couple's film opens when clicked." }
+              - label: "Cover photo focus"
+                name: "photoFocus"
+                widget: "select"
+                default: "center"
+                options: ["center", "top", "bottom", "left", "right"]
+                hint: "Which part of the cover photo to keep when it's cropped to fit the tile. Use 'top' for faces near the top, etc."
+              - { label: "Film link (YouTube)", name: "film", widget: "string", required: false, hint: "The couple's full wedding film. Paste a YouTube link — it shows at the top of their story page." }
+              - { label: "Their story (text)", name: "story", widget: "text", required: false, hint: "A short paragraph or two about their day. Leave blank to hide." }
+              - label: "Short clips (video)"
+                name: "clips"
+                widget: "list"
+                required: false
+                label_singular: "Clip"
+                summary: "{{fields.video}}"
+                hint: "Short MUTED clips that auto-loop (like Instagram reels). Keep each 3-8s, compressed, under ~3 MB. Do NOT upload full films here — those go on YouTube via the Film link above."
+                fields:
+                  - { label: "Video file (MP4)", name: "video", widget: "file", hint: "Max 100 MB per file. Short + compressed keeps the site fast." }
+                  - { label: "Cover image (optional)", name: "poster", widget: "image", required: false, hint: "Shown before the clip plays." }
+              - label: "Their photo gallery"
+                name: "photos"
+                widget: "list"
+                required: false
+                label_singular: "Photo"
+                summary: "{{fields.caption}}"
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
+                  - label: "Tile size"
+                    name: "size"
+                    widget: "select"
+                    default: "normal"
+                    options: ["normal", "tall", "wide"]
+                  - label: "Crop focus"
+                    name: "position"
+                    widget: "select"
+                    default: "center"
+                    options: ["center", "top", "bottom", "left", "right"]
+                    hint: "Which part of the photo to keep when cropped."
 
   # ---------- GALLERY ----------
   - name: "gallery"
@@ -96,6 +133,12 @@ collections:
                 widget: "select"
                 default: "normal"
                 options: ["normal", "tall", "wide"]
+              - label: "Crop focus"
+                name: "position"
+                widget: "select"
+                default: "center"
+                options: ["center", "top", "bottom", "left", "right"]
+                hint: "Which part of the photo to keep when it's cropped to fit its tile. Fixes off-center subjects getting chopped."
 
   # ---------- PACKAGES ----------
   - name: "packages"

@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Illuminance Wedding Films</title>
-<meta name="description" content="Real wedding films by Hunter Sites — Illuminance Wedding Films.">
+<title>Wedding Story — Illuminance Wedding Films</title>
+<meta name="description" content="A wedding film by Hunter Sites — Illuminance Wedding Films.">
 <link rel="icon" href="./images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/styles.css">
 </head>
-<body data-page="portfolio">
+<body data-page="story">
 
 <div id="loadError" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;background:#3a1a1a;color:#f4efe4;font-family:Montserrat,sans-serif;font-size:13px;text-align:center;padding:12px 16px">
   Content can’t load when the file is opened directly. View it through your live site (Netlify) or a local server — see SETUP.md.
@@ -37,13 +37,7 @@
 
 <main class="subpage">
   <div class="wrap">
-    <div class="subhead reveal">
-      <span class="label">Real Weddings</span>
-      <h1>Their Stories</h1>
-      <p>Every couple, every venue, every story we've had the honor of filming. Tap a wedding to see their film, photos, and moments.</p>
-    </div>
-    <div class="stories" id="storiesFull"></div>
-    <div class="view-all reveal" style="margin-top:70px"><a class="btn-ghost" href="./index.html#contact">Start Your Story</a></div>
+    <div class="story-wrap" id="storyRoot"></div>
   </div>
 </main>
 
